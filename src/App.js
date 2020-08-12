@@ -1,9 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const App = props => {
   const [state, setState] = useState(props);
   // オブジェクトで管理している値を分割して定義
   const {name, price} = state;
+
+  useEffect(() => {
+    console.log('This is like componentDidMount or componentDidUpdate');
+  });
+
+  useEffect(() => {
+    console.log('This is like componentDidMount');
+  }, []);
+
+  useEffect(() => {
+    console.log('This callback is for name only.');
+  }, [name]); // 第二引数は必ずしもstateの値である必要はない
 
   return (
     <>
@@ -129,3 +141,50 @@ export default App;
 //   name: '',
 //   price: 1000,
 // }
+
+// 8. state オブジェクト
+// const App = props => {
+//   const [state, setState] = useState(props);
+//   // オブジェクトで管理している値を分割して定義
+//   const {name, price} = state;
+
+//   return (
+//     <>
+//       <p>現在の{name}は、{price}円です。</p>
+//       {/*
+//       setStateでオブジェクトを管理する場合、
+//       第一引数...stateで展開
+//       第二引数 に変更するオブジェクトを記述
+//       */}
+//       <button onClick={() => setState({...state, price: price + 1})}>+1</button>
+//       <button onClick={() => setState({...state, price: price - 1})}>-1</button>
+//       <button onClick={() => setState(props)}>Reset</button>
+//       <input
+//         value={name}
+//         onChange={e => setState({...state, name: e.target.value})}
+//       />
+//     </>
+//   )  
+// }
+
+// // 外部からpropsを与えてあげることもできる
+// App.defaultProps = {
+//   name: '',
+//   price: 1000,
+// }
+// export default App;
+//       <button onClick={() => setState(props)}>Reset</button>
+//       <input
+//         value={name}
+//         onChange={e => setState({...state, name: e.target.value})}
+//       />
+//     </>
+//   )  
+// }
+
+// // 外部からpropsを与えてあげることもできる
+// App.defaultProps = {
+//   name: '',
+//   price: 1000,
+// }
+// export default App;
