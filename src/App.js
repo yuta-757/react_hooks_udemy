@@ -1,31 +1,24 @@
 import React, {useState} from 'react';
 
 const App = props => {
-  // コンポーネント内で定義する場合
-  // const initialStates = {
-  //   name: '',
-  //   price: 1000,
-  // }
-  // const [name, setName] = useState(initialStates.name);
-  // const [price, setPrice] = useState(initialStates.price);
-
-  const [name, setName] = useState(props.name);
-  const [price, setPrice] = useState(props.price);
-
-  const reset = () => {
-    setPrice(props.price);
-    setName(props.name);
-  }
+  const [state, setState] = useState(props);
+  // オブジェクトで管理している値を分割して定義
+  const {name, price} = state;
 
   return (
     <>
       <p>現在の{name}は、{price}円です。</p>
-      <button onClick={() => setPrice(price + 1)}>+1</button>
-      <button onClick={() => setPrice(price - 1)}>-1</button>
-      <button onClick={reset}>Reset</button>
+      {/*
+      setStateでオブジェクトを管理する場合、
+      第一引数...stateで展開
+      第二引数 に変更するオブジェクトを記述
+      */}
+      <button onClick={() => setState({...state, price: price + 1})}>+1</button>
+      <button onClick={() => setState({...state, price: price - 1})}>-1</button>
+      <button onClick={() => setState(props)}>Reset</button>
       <input
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={e => setState({...state, name: e.target.value})}
       />
     </>
   )  
@@ -98,3 +91,41 @@ export default App;
 //   {/* </React.Fragment> */}
 //   </>
 // );
+
+// 7. state
+// const App = props => {
+//   // コンポーネント内で定義する場合
+//   // const initialStates = {
+//   //   name: '',
+//   //   price: 1000,
+//   // }
+//   // const [name, setName] = useState(initialStates.name);
+//   // const [price, setPrice] = useState(initialStates.price);
+
+//   const [name, setName] = useState(props.name);
+//   const [price, setPrice] = useState(props.price);
+
+//   const reset = () => {
+//     setPrice(props.price);
+//     setName(props.name);
+//   }
+
+//   return (
+//     <>
+//       <p>現在の{name}は、{price}円です。</p>
+//       <button onClick={() => setPrice(price + 1)}>+1</button>
+//       <button onClick={() => setPrice(price - 1)}>-1</button>
+//       <button onClick={reset}>Reset</button>
+//       <input
+//         value={name}
+//         onChange={e => setName(e.target.value)}
+//       />
+//     </>
+//   )  
+// }
+
+// // 外部からpropsを与えてあげることもできる
+// App.defaultProps = {
+//   name: '',
+//   price: 1000,
+// }
