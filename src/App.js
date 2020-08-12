@@ -1,10 +1,63 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const App = () => {
+  // useStateは配列を二つ持つ
+  const [count, setCount] = useState(0);
+  // console.log(count);
+  // console.log(setCount);
+
+  const increment = () => {setCount(count + 1)};
+  const decrement = () => {setCount(count - 1)};
+
+  // setStateには引数を与えることもできる（より複雑なロジックに基づいて値を更新したい場合）
+  const increment2 = () => {setCount(previousCount => previousCount + 1)};
+  const decrement2 = () => {setCount(previousCount => previousCount - 1)};
+  
+  const doubleCount = () => {setCount(previousCount => previousCount * 2)};
+
+  const devide3 = () => {
+    setCount(previousCount => {
+      if (previousCount % 3 === 0) {
+        return previousCount / 3;        
+      } else {
+        return previousCount;
+      }
+    });
+    // コードを短くしたいなら三項演算子＋波かっことる
+    // setCount(previousCount =>
+    //   previousCount % 3 === 0 ? previousCount / 3 : previousCount
+    // );
+  };
+  
+  const resetCount = () => {setCount(0)};
+
   return (
-    <div>
-      this is a template for React app.
-    </div>
+    // 最上位で定義したい場合、React.Fragment
+    // <React.Fragment>
+    // React.Fragmentは消えしてもOK
+    <> 
+      <div>
+      count: {count}
+      </div>
+      <div>
+        <button onClick={increment}>+1</button>
+        <button onClick={decrement}>-1</button>
+      </div>
+      <div>
+        <button onClick={increment2}>+1</button>
+        <button onClick={decrement2}>-1</button>
+      </div>
+      <div>
+        <button onClick={doubleCount}>×2</button>
+      </div>
+      <div>
+        <button onClick={devide3}>3の倍数の時だけ、3で割る</button>
+      </div>
+      <div>
+        <button onClick={resetCount}>Reset</button>
+      </div>
+    {/* </React.Fragment> */}
+    </>
   );
 }
 
