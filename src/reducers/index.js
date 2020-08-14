@@ -1,3 +1,4 @@
+// 状態遷移のシミュレーション
 // action = {
 //     type: 'CREATE_EVENT',
 //     title: '2020年東京オリピックのお知らせ',
@@ -32,9 +33,10 @@
 // ]
 
 
-const events = (state = [], action) => {
+const events = (state, action) => {
     switch(action.type) {
         case 'CREATE_EVENT':
+            // console.log(state);
             const event = {title: action.title, body: action.body};
             const length = state.length;
             let id;
