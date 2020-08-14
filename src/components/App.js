@@ -2,6 +2,7 @@ import React, {useReducer, useState} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Event from './Event';
 import reducer from '../reducers/index';
 
 const App = () => {
@@ -16,12 +17,15 @@ const App = () => {
       type: 'CREATE_EVENT',
       title,
       body,
+      // 以下と同じ　プロパティとキーが同じ場合は省略できる
+      // title: title,
+      // body: body,
     });
 
     setTitle('');
     setBody('');
   };
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className='container-fluid'>
@@ -38,7 +42,7 @@ const App = () => {
         </div>
 
         <button className='btn btn-primary' onClick={addEvent}>イベントを作成する</button>
-        <button className='btn btn-danger'>全てのイベントを削除する</button>
+        <button type='button' className='btn btn-danger'>全てのイベントを削除する</button>
 
       </form>
 
@@ -53,6 +57,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
+          {state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch}/>))}
         </tbody>
       </table>
     </div>
