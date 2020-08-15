@@ -4,18 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import EventForm from './EventForm';
 import Events from './Events';
-
+import AppContext from '../contexts/AppContext';
 import reducer from '../reducers/index';
 
+console.log({AppContext});
 const App = () => {
   // useReducerの第二引数はstateの初期値
   const [state, dispatch] = useReducer(reducer, []);
 
   return (
-    <div className='container-fluid'>
-      <EventForm state={state} dispatch={dispatch}/>
-      <Events state={state} dispatch={dispatch}/>
-    </div>
+     <AppContext.Provider value={'Hello, I am a provider'}>
+      <div className='container-fluid'>
+        <EventForm state={state} dispatch={dispatch}/>
+        <Events state={state} dispatch={dispatch}/>
+      </div>
+    </AppContext.Provider>
   );
 }
 
