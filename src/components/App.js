@@ -8,8 +8,11 @@ import AppContext from '../contexts/AppContext';
 import reducer from '../reducers/index';
 
 const App = () => {
+  const initialState = {
+    events: [],
+  };
   // useReducerの第二引数はstateの初期値
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
      <AppContext.Provider value={{state, dispatch}}>
@@ -204,4 +207,19 @@ export default App;
 //       />
 //     </>
 //   )  
+// }
+
+// 24. 
+// const App = () => {
+//   // useReducerの第二引数はstateの初期値
+//   const [state, dispatch] = useReducer(reducer, []);
+
+//   return (
+//      <AppContext.Provider value={{state, dispatch}}>
+//       <div className='container-fluid'>
+//         <EventForm />
+//         <Events />
+//       </div>
+//     </AppContext.Provider>
+//   );
 // }

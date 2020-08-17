@@ -23,7 +23,7 @@ const Events = () => {
             </thead>
             <tbody>
                 {/* keyは特別なpropsで値の受け取りができない */}
-                {state.map((event, index) => (<Event key={index} event={event} />))}
+                {state.events.map((event, index) => (<Event key={index} event={event} />))}
             </tbody>
             </table>
         </>
