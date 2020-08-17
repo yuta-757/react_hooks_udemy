@@ -10,6 +10,7 @@ import reducer from '../reducers/index';
 const App = () => {
   const initialState = {
     events: [],
+    operationLogs: [],
   };
   // useReducerの第二引数はstateの初期値
   const [state, dispatch] = useReducer(reducer, initialState);
