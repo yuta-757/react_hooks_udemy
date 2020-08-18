@@ -12,7 +12,6 @@ const EventForm = () => {
     const {state, dispatch} = useContext(AppContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    console.log(state);
 
     const addEvent = e => {
         e.preventDefault();
