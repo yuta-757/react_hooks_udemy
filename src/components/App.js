@@ -6,6 +6,7 @@ import EventForm from './EventForm';
 import Events from './Events';
 import AppContext from '../contexts/AppContext';
 import reducer from '../reducers/index';
+console.log((new Date()).toISOString());
 
 const App = () => {
   const initialState = {
