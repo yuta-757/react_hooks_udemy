@@ -12,6 +12,7 @@ const EventForm = () => {
     const {state, dispatch} = useContext(AppContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    console.log(state);
 
     const addEvent = e => {
         e.preventDefault();
@@ -28,7 +29,7 @@ const EventForm = () => {
         dispatch({
           type: ADD_OPERATION_LOG,
           description: 'イベントを作成しました。',
-          operateAt: timeCurrentIso8601(),
+          operatedAt: timeCurrentIso8601(),
         })
 
         setTitle('');
@@ -44,7 +45,7 @@ const EventForm = () => {
           dispatch({
             type: ADD_OPERATION_LOG,
             description: '全てのイベントを削除しました',
-            operateAt: timeCurrentIso8601,
+            operatedAt: timeCurrentIso8601(),
           })
         }
     };
